@@ -43,6 +43,8 @@ function getX() {
                 let y = data.result;
                 stopLoader();
                 document.getElementById("ynumber").innerText = y;
+                fetchResult()
+
 
             })
             .catch(error => error.text())
@@ -54,4 +56,28 @@ function getX() {
 
             })
     }
+
 }
+function fetchResult() {
+    const resultsURL = "http://localhost:5050/getFibonacciResults"
+    fetch(resultsURL)
+        .then(response => response.json())
+        .then(function (array) {
+            console.log(array.results)
+
+            for (let i = 0; i < array.results.length; i++) {
+                var myDate = new Date(array.results[i].createdDate);
+                console.log(myDate)
+                let line = document.createElement("p");
+                let node = document.createTextNode("The Fibonacci of " + array.results[i].number + " is " + array.results[i].result + " calculated at: " + myDate)
+                line.appendChild(node);
+                let element = document.getElementById("dataArray");
+                let child = document.getElementById("content");
+                element.insertBefore(line, child);
+
+            }
+            document.getElementById("resLoader").classList.add('loaded')
+        })
+    console.log("It did run the function")
+};
+document.addEventListener("DOMContentLoaded", fetchResult)
