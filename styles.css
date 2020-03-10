@@ -75,7 +75,11 @@ body {
     line-height: 18px;
     color: #373A3C;
 }
-.res-lines p {
+.listStyle {
     border-bottom: 1px solid black;
     padding-bottom: 8px;
+    font-size: 18px;
+    line-height: 18px;
+    color: #373A3C;
+    
 }

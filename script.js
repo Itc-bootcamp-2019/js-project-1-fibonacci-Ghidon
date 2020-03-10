@@ -68,16 +68,22 @@ function fetchResult() {
             for (let i = 0; i < array.results.length; i++) {
                 var myDate = new Date(array.results[i].createdDate);
                 console.log(myDate)
-                let line = document.createElement("p");
-                let node = document.createTextNode("The Fibonacci of " + array.results[i].number + " is " + array.results[i].result + " calculated at: " + myDate)
-                line.appendChild(node);
-                let element = document.getElementById("dataArray");
-                let child = document.getElementById("content");
-                element.insertBefore(line, child);
+                let myDiv = document.getElementById("dataArray");
+                let line = document.createElement("p")
+                line.classList.add("listStyle");
+                line.innerHTML += "The Fibonacci of <b>" + array.results[i].number + "</b> is <b>" + array.results[i].result + "</b>. Calculated at " + myDate;
+                myDiv.appendChild(line)
+
+                //let line = document.createElement("p");
+                //let node = document.createTextNode("The Fibonacci of " + array.results[i].number + " is " + array.results[i].result + " calculated at: " + myDate)
+                // line.appendChild(node);
+                // let element = document.getElementById("dataArray");
+                //let child = document.getElementById("content");
+                //element.insertBefore(line, child);
 
             }
             document.getElementById("resLoader").classList.add('loaded')
         })
-    console.log("It did run the function")
+
 };
 document.addEventListener("DOMContentLoaded", fetchResult)
